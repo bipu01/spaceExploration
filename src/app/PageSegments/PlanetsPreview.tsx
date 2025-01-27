@@ -23,15 +23,17 @@ import SinglePlanetView from "../components/SinglePlanetView";
 const PlanetsPreview = () => {
     const isPlanetSelected = useSelector((state: RootState) => state.planetSlice.planetSelected);
     return (
-        <div className="bg-[#0F1322] h-[105vh] w-[100vw] text-white px-6 sm:px-[10vw] space-y-6 transition-all duration-200 ">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl pt-[12vh] tracking-wide ">
+        <div className="bg-[#0F1322] h-[105vh] w-[100vw] text-white  sm:px-[10vw] space-y-6 transition-all duration-200 ">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl pt-[12vh] tracking-wide pl-4 sm:pl-0">
                 Learn about the Solar system{" "}
             </h2>
 
             <div
-                className={`h-[80vh] ${
-                    isPlanetSelected && isPlanetSelected ? "w-[80vw] mx-[10vw]" : "w-[100vw] mx-0"
-                } relative -translate-x-[10vw] overflow-y-hidden overflow-x-hidden transition-all duration-700 ease-in-out `}
+                className={`h-[100vh] overflow-y-scroll md:h-[80vh] ${
+                    isPlanetSelected && isPlanetSelected
+                        ? "w-[98vw] sm:w-[80vw] mx-[1vw] sm:mx-[10vw]"
+                        : "w-[100vw] mx-[3vw] sm:mx-0"
+                } relative sm:-translate-x-[10vw] md:overflow-y-hidden overflow-x-hidden transition-all duration-700 ease-in-out `}
             >
                 {/* <Image className="absolute h-full w-full  content-cover z-0" src={starbg} alt="" /> */}
                 {/* <div className="absolute inset-0 bg-black"></div> */}
@@ -52,9 +54,9 @@ const PlanetsList = () => {
     const planetNameStyle = ` text-2xl relative z-20 -translate-x-32 translate-y-7 peer-hover:translate-x-0 peer-hover:-translate-y-8 peer-hover:scale-[1.1] peer-hover:bg-black/30 rounded-full px-4 transition-all duration-500 ease-in-out`;
 
     return (
-        <div className="overflow-x-scroll overflow-y-hidden h-[100%] w-[100vw] absolute z-20 flex pt-[10%] gap-6">
+        <div className="overflow-x-scroll overflow-y-hidden h-[100%] w-[100vw] absolute z-20 flex pt-[10%] gap-6 sm:gap-6">
             <div
-                className="flex flex-col items-center min-w-[35vw] ml-[5vw] cursor-pointer"
+                className="flex flex-col items-center min-h-[12rem] min-w-[12rem] sm:min-w-[32rem]  ml-[10vw] sm:ml-[5vw] cursor-pointer"
                 onClick={() => {
                     dispatch(setSelectedPlanetName("Mercury"));
                     dispatch(setPlanetSelected(true));
@@ -65,12 +67,12 @@ const PlanetsList = () => {
                 <Image
                     src={mercuryImg}
                     alt=""
-                    className={`peer h-[80%] w-[85%] top-[10%] group ${planetBehavourStyles} `}
+                    className={`peer h-[12rem] w-[12rem] sm:h-[25rem] sm:w-[25rem] top-[10%] group ${planetBehavourStyles} `}
                 />
                 <span className={`${planetNameStyle}`}>Mercury</span>
             </div>
             <div
-                className=" flex flex-col items-center min-w-[35vw]"
+                className="flex flex-col items-center min-h-[12rem] min-w-[12rem] sm:min-w-[32rem] cursor-pointer"
                 onClick={() => {
                     dispatch(setSelectedPlanetName("Venus"));
                     dispatch(setPlanetSelected(true));
@@ -80,12 +82,12 @@ const PlanetsList = () => {
                 <Image
                     src={venusImg}
                     alt=""
-                    className={`peer h-[80%] w-[85%] top-[10%] ${planetBehavourStyles}`}
+                    className={`peer h-[12rem] w-[12rem] sm:h-[25rem] sm:w-[25rem] top-[10%] group ${planetBehavourStyles} `}
                 />
                 <span className={`${planetNameStyle}`}>Venus</span>
             </div>
             <div
-                className=" flex flex-col items-center min-w-[35vw] "
+                className="flex flex-col items-center min-h-[12rem] min-w-[12rem] sm:min-w-[32rem] cursor-pointer"
                 onClick={() => {
                     dispatch(setSelectedPlanetName("Earth"));
                     dispatch(setPlanetSelected(true));
@@ -95,12 +97,12 @@ const PlanetsList = () => {
                 <Image
                     src={earthImg}
                     alt=""
-                    className={`peer h-[80%] w-[85%] top-[10%] ${planetBehavourStyles} `}
+                    className={`peer h-[12rem] w-[12rem] sm:h-[25rem] sm:w-[25rem] top-[10%] group ${planetBehavourStyles} `}
                 />
                 <span className={`${planetNameStyle}`}>Earth</span>
             </div>
             <div
-                className=" flex flex-col items-center min-w-[35vw]"
+                className="flex flex-col items-center min-h-[12rem] min-w-[12rem] sm:min-w-[32rem] cursor-pointer"
                 onClick={() => {
                     dispatch(setSelectedPlanetName("Mars"));
                     dispatch(setPlanetSelected(true));
@@ -110,12 +112,12 @@ const PlanetsList = () => {
                 <Image
                     src={marsImg}
                     alt=""
-                    className={`peer h-[80%] w-[85%] top-[10%] ${planetBehavourStyles}`}
+                    className={`peer h-[12rem] w-[12rem] sm:h-[25rem] sm:w-[25rem] top-[10%] group ${planetBehavourStyles} `}
                 />
                 <span className={`${planetNameStyle}`}>Mars</span>
             </div>
             <div
-                className=" flex flex-col items-center min-w-[35vw]"
+                className="flex flex-col items-center min-h-[12rem] min-w-[12rem] sm:min-w-[32rem] cursor-pointer"
                 onClick={() => {
                     dispatch(setSelectedPlanetName("Jupiter"));
                     dispatch(setPlanetSelected(true));
@@ -125,13 +127,13 @@ const PlanetsList = () => {
                 <Image
                     src={jupiterImg}
                     alt=""
-                    className={`peer h-[80%] w-[85%] top-[10%] hover:scale-105 ${planetBehavourStyles}`}
+                    className={`peer h-[12rem] w-[12rem] sm:h-[25rem] sm:w-[25rem] top-[10%] group ${planetBehavourStyles} `}
                 />
                 <span className={`${planetNameStyle}`}>Jupiter</span>
             </div>
 
             <div
-                className=" flex flex-col items-center min-w-[35vw]  mr-[5vw]"
+                className="flex flex-col items-center min-h-[12rem] min-w-[12rem] sm:min-w-[32rem] cursor-pointer"
                 onClick={() => {
                     dispatch(setSelectedPlanetName("Saturn"));
                     dispatch(setPlanetSelected(true));
@@ -141,7 +143,7 @@ const PlanetsList = () => {
                 <Image
                     src={saturnImg}
                     alt=""
-                    className={`peer h-[100%] w-[100%] -translate-y-20 ${planetBehavourStyles}`}
+                    className={`peer h-[12rem] w-[12rem] sm:h-[25rem] sm:w-[25rem] top-[10%] group ${planetBehavourStyles} `}
                 />
                 <span
                     className={` ${planetNameStyle} -translate-x-32 -translate-y-24 peer-hover:translate-x-0 peer-hover:-translate-y-32 peer-hover:scale-[1.1] peer-hover:bg-black/30 rounded-full px-4 transition-all duration-500 ease-in-out`}
@@ -151,7 +153,7 @@ const PlanetsList = () => {
             </div>
 
             <div
-                className=" flex flex-col items-center min-w-[35vw] mr-[5vw]"
+                className="flex flex-col items-center min-h-[12rem] min-w-[12rem] sm:min-w-[32rem] cursor-pointer "
                 onClick={() => {
                     dispatch(setSelectedPlanetName("Uranus"));
                     dispatch(setPlanetSelected(true));
@@ -161,13 +163,13 @@ const PlanetsList = () => {
                 <Image
                     src={uranusImg}
                     alt=""
-                    className={`peer h-[100%] w-[100%] -translate-y-20 ${planetBehavourStyles}`}
+                    className={`peer h-[12rem] w-[12rem] sm:h-[25rem] sm:w-[25rem] top-[10%] group ${planetBehavourStyles} `}
                 />
                 <span className={` ${planetNameStyle}`}>Uranus</span>
             </div>
 
             <div
-                className=" flex flex-col items-center min-w-[35vw] mr-[5vw]"
+                className="flex flex-col items-center min-h-[12rem] min-w-[12rem] sm:min-w-[32rem] cursor-pointer mr-[5vw]"
                 onClick={() => {
                     dispatch(setSelectedPlanetName("Neptune"));
                     dispatch(setPlanetSelected(true));
@@ -177,7 +179,7 @@ const PlanetsList = () => {
                 <Image
                     src={neptuneImg}
                     alt=""
-                    className={`peer h-[100%] w-[100%] -translate-y-20 ${planetBehavourStyles}`}
+                    className={`peer h-[12rem] w-[12rem] sm:h-[25rem] sm:w-[25rem] top-[10%] group ${planetBehavourStyles} `}
                 />
                 <span className={` ${planetNameStyle}`}>Neptune</span>
             </div>

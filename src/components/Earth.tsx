@@ -34,7 +34,7 @@ export default function EarthThreeD(props) {
 
     const { scale } = useSpring({
         //   scale: isZoomed ? 0.0045 : 0.0025,
-        scale: 0.8,
+        scale: 1,
         config: { duration: 600 },
     });
 
@@ -54,12 +54,12 @@ export default function EarthThreeD(props) {
     };
 
     // All active satellites
-    // const getActive = async () => {
-    //     const recent = await fetch("/activeSatellites.json");
-    //     const recentBody = await recent.json();
-    //     const parsedData = getSpaceObjectPositionsForThreeFiber(recentBody);
-    //     setSatellites(parsedData);
-    // };
+    const getActive = async () => {
+        const recent = await fetch("/activeSatellites.json");
+        const recentBody = await recent.json();
+        const parsedData = getSpaceObjectPositionsForThreeFiber(recentBody);
+        setSatellites(parsedData);
+    };
 
     // Iss Position
     const getISS = async () => {
@@ -74,6 +74,7 @@ export default function EarthThreeD(props) {
         if (earthRef.current) {
             // getActive();
             getRecentlyLaunched();
+            // getISS();
         }
     }, []);
 
@@ -123,8 +124,8 @@ export default function EarthThreeD(props) {
 
             <EffectComposer>
                 <Bloom
-                    intensity={0.5}
-                    luminanceThreshold={0.1}
+                    intensity={0.2}
+                    luminanceThreshold={0.2}
                     luminanceSmoothing={1.5}
                     height={300}
                 />

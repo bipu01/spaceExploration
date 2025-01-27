@@ -6,6 +6,7 @@ const planetSlice = createSlice({
         planetSelected: false,
         selectedPlanetName: "",
         selectedPlanetIndex: 0,
+        showPlayground: false,
     },
     reducers: {
         setPlanetSelected: (state, action) => {
@@ -18,9 +19,16 @@ const planetSlice = createSlice({
         setSelectedPlanetIndex: (state, action) => {
             state.selectedPlanetIndex = action.payload;
         },
+        setShowPlayground: (state, action) => {
+            state.showPlayground = action.payload;
+        },
     },
 });
 
-export const { setPlanetSelected, setSelectedPlanetName, setSelectedPlanetIndex } =
-    planetSlice.actions;
+export const {
+    setPlanetSelected,
+    setSelectedPlanetName,
+    setSelectedPlanetIndex,
+    setShowPlayground,
+} = planetSlice.actions;
 export default planetSlice.reducer;

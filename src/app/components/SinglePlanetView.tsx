@@ -170,10 +170,10 @@ const SinglePlanetView = () => {
         };
     }, [imageOpened, handleRightArrowClick, handleLeftArrowClick]);
 
-    const planetImagesStyle = "w-[35%] min-w-[11rem] h-32 object-cover rounded-md ";
+    // const planetImagesStyle = " object-cover rounded-md ";
 
     return (
-        <div className={`w-full h-full absolute z-20 ${montserrat.className}`}>
+        <div className={`w-full h-[120vh] md:h-full absolute z-20 ${montserrat.className}`}>
             <button
                 className="bg-[#7482B4]/80 px-4 py-1.5 rounded-full absolute top-4 left-4 z-20"
                 onClick={() => {
@@ -189,7 +189,7 @@ const SinglePlanetView = () => {
             {selectedPlanetName === "Earth" && (
                 <div className="px-4 py-1.5 rounded-full absolute top-4 left-32 z-30 flex gap-4 items-center">
                     <div className=" text-lg">Satellites</div>
-                    <div className="relative z-50 bg-[#4a5068]/50 rounded-full px-2 py-1.5 text-sm text-white tracking-wider font-light flex gap-2">
+                    <div className="relative z-50 bg-[#4a5068]/50 rounded-full px-2 py-1.5 text-md text-white tracking-wider font-light flex gap-2">
                         <div
                             className={`absolute rounded-full top-[10%] -z-30 w-[45%] h-[80%] transition-all duration-500 ${
                                 showSatellites && showSatellites ? "left-1.5" : "right-1.5"
@@ -224,9 +224,11 @@ const SinglePlanetView = () => {
                 </div>
             )} */}
 
-            <div className={`w-full h-full  flex relative $`}>
+            <div className={`w-full h-full  flex relative flex-col md:flex-row $`}>
                 <div className="w-[150%] h-full absolute top-0 right-0 backdrop-blur-2xl -z-10"></div>
                 <div className="w-[105%] h-full absolute top-0 right-0 bg-black  -z-20"></div>
+
+                {/* Instructions for satellites */}
                 {showSatellites && showInstructions && (
                     <div
                         className="w-full h-full absolute flex items-center justify-center  bg-black/50 cursor-pointer z-30"
@@ -241,6 +243,7 @@ const SinglePlanetView = () => {
                     </div>
                 )}
 
+                {/* Earth with Satellites */}
                 {showSatellites && (
                     <div
                         className={`w-full h-full z-20 bg-transparent  absolute top-0 left-0 transition-all delay-1000 duration-1000 ${
@@ -250,7 +253,7 @@ const SinglePlanetView = () => {
                         }`}
                     >
                         <Canvas camera={{ position: [0, 0, 15], fov: 30 }}>
-                            <OrbitControls enableZoom={false} enableRotate={true} />
+                            <OrbitControls enableZoom={true} enableRotate={true} />
 
                             <spotLight
                                 position={[10, 1, 5]}
@@ -271,7 +274,7 @@ const SinglePlanetView = () => {
                     <Image
                         src={planetImagePng[selectedPlanetName]}
                         alt=""
-                        className={`relative h-[40vmax] w-[40vmax] z-40 -left-[15%] top-[3rem] transition-all duration-1000 ${
+                        className={`relative h-[40vmax] w-[40vmax] z-40 left-0 -top-[10%] md:-left-[15%] md:top-[3rem] transition-all duration-1000 ${
                             showSatellites && showSatellites
                                 ? "-translate-x-[50rem]"
                                 : "translate-x-[0rem]"
@@ -297,11 +300,11 @@ const SinglePlanetView = () => {
 
                 {/* Next planet Preview  */}
                 <div
-                    className={`absolute z-30 w-[10%] sm:w-[6%] aspect-square cursor-pointer transition-all ease-out duration-1000 ${
+                    className={`absolute z-30 w-[10%] md:w-[6%] aspect-square cursor-pointer transition-all ease-out duration-1000 ${
                         showSatellites && showSatellites ? "-translate-y-[15rem]" : "translate-y-0"
                     }  ${
                         startSecondAnimation && startSecondAnimation
-                            ? "top-[10%] right-[50%]"
+                            ? "md:top-[10%] md:right-[50%] top-[2%] right-[20%]"
                             : "-top-[30%] right-[30%]"
                     }`}
                     onClick={() => {
@@ -331,11 +334,11 @@ const SinglePlanetView = () => {
 
                 {/* Previous planet Preview  */}
                 <div
-                    className={`absolute z-30 w-[10%] sm:w-[4%] aspect-square cursor-pointer transition-all ease-out duration-1000 ${
+                    className={`absolute z-30 w-[10%] md:w-[4%] aspect-square cursor-pointer transition-all ease-out duration-1000 ${
                         showSatellites && showSatellites ? "-translate-x-[15rem]" : "translate-x-0"
                     } ${
                         startSecondAnimation && startSecondAnimation
-                            ? "bottom-[10%] left-[4%]"
+                            ? "md:bottom-[10%] md:left-[4%] bottom-[62%] left-[85%] "
                             : "-bottom-[30%] -left-[40%]"
                     }`}
                     onClick={() => {
@@ -371,24 +374,25 @@ const SinglePlanetView = () => {
 
                 {/* Info contents of planet */}
                 <div
-                    className={`relative z-20 pt-[5%] px-6  w-[45%] flex flex-col gap-12 transition-all duration-1000 ${
+                    className={`relative z-20 pt-[5%] px-6 w-full md:w-[45%] flex flex-col gap-12 transition-all duration-1000 ${
                         showSatellites && showSatellites ? "translate-x-[150%]" : "translate-x-0"
                     } `}
                 >
-                    <div className="text-white font-semibold text-xl sm:text-2xl lg:text-4xl tracking-widest">
+                    <div className="text-white font-semibold text-xl md:text-2xl lg:text-4xl tracking-widest">
                         Planet: {selectedPlanetName}
                     </div>
-                    <div className=" flex flex-nowrap gap-4">
+                    <div className=" flex flex-nowrap overflow-x-scroll overflow-y-scroll md:h-[50%] w-full gap-4">
                         {planetSurfaceImages[selectedPlanetName].map((image, index) => {
                             return (
                                 <div
                                     key={index}
-                                    className={`cursor-pointer transition-all duration-200 hover:border-[1px] hover:border-white rounded-md `}
+                                    className={`cursor-pointer transition-all duration-200 hover:border-[1px] hover:border-white rounded-md
+                                        h-[8rem] w-[16rem] `}
                                 >
                                     <Image
                                         src={image}
                                         alt={image.toString()}
-                                        className={` ${planetImagesStyle} `}
+                                        className={`h-full w-full object-cover rounded-md`}
                                         quality={100}
                                         //     key={index}
                                         onClick={() => {
@@ -444,11 +448,11 @@ const SinglePlanetView = () => {
                             </div>
 
                             {/* Actual Image */}
-                            <div className="relative z-20 top-0 left-0 w-[85%] h-[85%]">
+                            <div className="relative z-20 top-0 left-0 w-[85%] h-[85%] ">
                                 <Image
                                     src={planetSurfaceImages[selectedPlanetName][imageIndex]}
                                     alt={planetSurfaceImages[selectedPlanetName][imageIndex]}
-                                    className={` ${planetImagesStyle} h-full w-full `}
+                                    className={`  h-full w-full rounded-md`}
                                 />
                             </div>
                         </div>
