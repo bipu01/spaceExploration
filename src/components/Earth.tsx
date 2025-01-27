@@ -13,7 +13,7 @@ export type SatelliteData = {
     position: [number, number, number];
 };
 
-export default function Earth(props) {
+export default function EarthThreeD(props) {
     const earthRef = useRef<THREE.Mesh>(null);
     const satellitesRef = useRef<THREE.Group>(null);
     const [isZoomed, setIsZoomed] = useState(false);

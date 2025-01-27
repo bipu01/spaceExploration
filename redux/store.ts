@@ -1,7 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
-import popupSlice from "./features/popupSlice";
+import planetSlice from "./features/planetSlice";
 import pagesSlice from "./features/pagesSlice";
 
 // Configuration for Redux Persist
@@ -9,12 +9,12 @@ const persistConfig = {
     key: "root",
     storage,
     version: 1,
-    whitelist: ["userSlice", "popupSlice"], // Only userSlice and popupSlice will be persisted
+    whitelist: ["userSlice"], // Only userSlice and popupSlice will be persisted
 };
 
 // Combine all reducers
 const rootReducer = combineReducers({
-    popupSlice,
+    planetSlice,
     pagesSlice,
 });
 
