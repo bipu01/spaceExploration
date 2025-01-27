@@ -10,7 +10,7 @@ export type PlanetInfo = {
     numberOfMoons: number;
 };
 
-export const solarSystem = {
+const solarSystem = {
     mercury: {
         diameter: 4880, // in km
         surfaceTemperature: "-180°C to 430°C",
@@ -100,6 +100,8 @@ export const solarSystem = {
         numberOfMoons: 14,
     },
 };
+
+export default solarSystem;
 
 // Note: Moon counts are updated per NASA's latest data (2023)
 // Distances are average orbital distances from Sun

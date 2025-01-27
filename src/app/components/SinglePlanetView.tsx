@@ -63,7 +63,7 @@ import { Montserrat } from "next/font/google";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 import PlanetFog from "./PlanetFog";
-import { solarSystem } from "../PlanetInfo";
+import solarSystem from "../PlanetInfo";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { div } from "framer-motion/client";
