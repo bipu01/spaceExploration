@@ -26,12 +26,14 @@ const Navbar = () => {
 
     return (
         <div
-            className={` top-12 z-50 left-[15vw] bg-[#2A2D3B]/50  rounded-full px-2 py-1.5 text-white tracking-wider font-light flex gap-2 ${
+            className={`top-4 md:top-12 z-50 left-[3vw] md:left-[15vw] bg-[#2A2D3B]/50  rounded-full px-2 py-1.5 text-white tracking-wider font-light flex gap-2 text-sm md:text-base ${
                 showPlayground && showPlayground ? "fixed" : "absolute"
             }`}
         >
             <button
-                className={`${homeActive && `bg-[#7482B4]/80`} px-6 py-1.5 rounded-full`}
+                className={`${
+                    homeActive && `bg-[#7482B4]/80`
+                } px-3 md:px-6 py-1 md:py-1.5 rounded-full`}
                 onClick={() => {
                     setHomeActive(true);
                     dispatch(setShowPlayground(false));
@@ -40,7 +42,9 @@ const Navbar = () => {
                 Home
             </button>
             <button
-                className={`${!homeActive && `bg-[#7482B4]/80`}  px-4 py-1.5 rounded-full`}
+                className={`${
+                    !homeActive && `bg-[#7482B4]/80`
+                } px-2 md:px-4 py-1 md:py-1.5 rounded-full`}
                 onClick={() => {
                     setHomeActive(false);
                     dispatch(setShowPlayground(true));

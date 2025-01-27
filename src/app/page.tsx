@@ -21,8 +21,8 @@ export default function Page() {
     }, []);
     return (
         <>
-            <div className="w-full h-full overflow-y-hidden">
-                {showPopup && (
+            <div className="w-full h-full overflow-y-hidden overflow-x-hidden">
+                {/* {showPopup && (
                     <div className="w-[96vw] h-[96vh] text-white flex flex-col  p-8 items-center rounded-md z-40 fixed top-[2vh] left-[2vw] bg-black ">
                         <div className="pt-[13vh] items-center flex flex-col">
                             <Image src={oopsImg} alt="" className="h-[7rem] w-[7rem]" />
@@ -42,7 +42,7 @@ export default function Page() {
                             <Image src={rightArrow} alt="" className="h-4 w-4" />
                         </button>
                     </div>
-                )}
+                )} */}
                 <div>
                     <Navbar />
                     <LandingPage />

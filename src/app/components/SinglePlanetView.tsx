@@ -173,7 +173,7 @@ const SinglePlanetView = () => {
     // const planetImagesStyle = " object-cover rounded-md ";
 
     return (
-        <div className={`w-full h-[120vh] md:h-full absolute z-20 ${montserrat.className}`}>
+        <div className={`w-full md:h-full absolute z-20 ${montserrat.className}`}>
             <button
                 className="bg-[#7482B4]/80 px-4 py-1.5 rounded-full absolute top-4 left-4 z-20"
                 onClick={() => {
@@ -338,7 +338,7 @@ const SinglePlanetView = () => {
                         showSatellites && showSatellites ? "-translate-x-[15rem]" : "translate-x-0"
                     } ${
                         startSecondAnimation && startSecondAnimation
-                            ? "md:bottom-[10%] md:left-[4%] bottom-[62%] left-[85%] "
+                            ? "md:bottom-[10%] md:left-[4%] bottom-[71%] left-[85%] "
                             : "-bottom-[30%] -left-[40%]"
                     }`}
                     onClick={() => {

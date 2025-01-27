@@ -27,7 +27,7 @@ const LandingPage = () => {
         <>
             {showPlayground && (
                 <div
-                    className={`w-full h-full z-20 bg-[#0F1322]  fixed top-0 left-0 transition-all delay-1000 duration-1000 ${
+                    className={`w-full h-full z-40 bg-[#0F1322]  fixed top-0 left-0 transition-all delay-1000 duration-1000 ${
                         showPlayground && showPlayground
                             ? "translate-y-[0rem]"
                             : "-translate-y-[50rem] "
@@ -53,7 +53,7 @@ const LandingPage = () => {
                         <EarthThreeD />
                     </Canvas>
 
-                    <div className="h-[80vh] w-[20vw] bg-white/50 rounded-md absolute top-[10vh] right-[3rem]"></div>
+                    <div className="sm:h-[80vh] sm:w-[20vw] h-[8rem] w-[96vw] bg-white/50 rounded-sm absolute right-[2vw] sm:top-[10vh]  top-[80vh] sm:right-[3rem] "></div>
                 </div>
             )}
             {satelliteLoading && (
@@ -65,7 +65,7 @@ const LandingPage = () => {
                     />
                 </div>
             )}
-            <div className={`${montserrat.className} relative h-[100vh] `}>
+            <div className={`${montserrat.className} relative h-[100vh]   overflow-hidden`}>
                 {/* Background and blur */}
                 <div className="w-[100vw] h-[100vh] backdrop-blur-3xl absolute top-0 left-0 z-20"></div>
                 <Image
@@ -80,11 +80,11 @@ const LandingPage = () => {
                 </div>
 
                 {/* Big texts in Home */}
-                <div className="absolute top-1/4 left-0 z-30 text-white ml-[15vw] ">
-                    <div className="flex flex-col gap-8 tracking-[0.8rem] pb-16 text-3xl sm:text-4xl lg:text-6xl">
+                <div className="absolute top-[20vh] sm:top-1/4 left-0 z-30 text-white ml-[15vw] ">
+                    <div className="flex flex-col gap-8 tracking-[0.8rem] pb-16 text-4xl lg:text-6xl">
                         <span className="font-bold">VAST YET TINY</span>
                         <span
-                            className="font-extrabold text-4xl sm:text-5xl lg:text-[5rem] text-transparent bg-clip-text bg-cover bg-center"
+                            className="font-extrabold text-5xl lg:text-[5rem] text-transparent bg-clip-text bg-cover bg-center"
                             style={{
                                 backgroundImage: "url('/images/solarSystemTextBG.png')",
                             }}
@@ -94,18 +94,18 @@ const LandingPage = () => {
                         <span className="font-bold">OF OURS</span>
                     </div>
                     <div className="flex gap-3 items-center font-light ">
-                        <span className="text-lg  tracking-widest">
+                        <span className="text-sm sm:text-lg  tracking-widest">
                             Learn interactively with AI
                         </span>
-                        <Image src={avatar} alt="" className="w-8 aspect-square" />
+                        <Image src={avatar} alt="" className="w-6 sm:w-8 aspect-square" />
                     </div>
 
                     {/* Floating Satellite */}
-                    <div className="absolute top-0 left-0 translate-x-1/3">
+                    <div className="absolute sm:top-0 sm:left-0 sm:translate-x-1/3 ">
                         <Image
                             src={satelliteImg}
                             alt=""
-                            className="w-[50vw] aspect-square"
+                            className="sm:w-[50vw] w-[100vw] aspect-square scale-150 sm:scale-100"
                             quality={100}
                         />
                     </div>
