@@ -17,6 +17,7 @@ import Venus from "../../../public/images/planets/venus.png";
 import Mars from "../../../public/images/planets/mars.png";
 import Earth from "../../../public/images/planets/earth.png";
 import Mercury from "../../../public/images/planets/mercury.png";
+import instructionsImg from "../../../public/images/instructions.png";
 
 import backArrow from "../../../public/images/backArrow.svg";
 
@@ -65,6 +66,7 @@ import PlanetFog from "./PlanetFog";
 import { solarSystem } from "../PlanetInfo";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { div } from "framer-motion/client";
 // import solarSystem from "../PlanetInfo";
 
 const SinglePlanetView = () => {
@@ -127,6 +129,7 @@ const SinglePlanetView = () => {
     const [imageOpened, setImageOpened] = useState(false);
     const [imageIndex, setImageIndex] = useState(0);
     const [factFetched, setFactFetched] = useState(false);
+    const [showInstructions, setShowInstructions] = useState(true);
 
     useEffect(() => {
         setTimeout(() => {
@@ -224,6 +227,19 @@ const SinglePlanetView = () => {
             <div className={`w-full h-full  flex relative $`}>
                 <div className="w-[150%] h-full absolute top-0 right-0 backdrop-blur-2xl -z-10"></div>
                 <div className="w-[105%] h-full absolute top-0 right-0 bg-black  -z-20"></div>
+                {showSatellites && showInstructions && (
+                    <div
+                        className="w-full h-full absolute flex items-center justify-center  bg-black/50 cursor-pointer z-30"
+                        onClick={() => setShowInstructions(false)}
+                    >
+                        <Image
+                            src={instructionsImg}
+                            alt=""
+                            className=" h-[30%] w-auto user-select-none"
+                            draggable={false}
+                        />
+                    </div>
+                )}
 
                 {showSatellites && (
                     <div
