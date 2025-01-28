@@ -7,6 +7,10 @@ const planetSlice = createSlice({
         selectedPlanetName: "",
         selectedPlanetIndex: 0,
         showPlayground: false,
+
+        showAllSatellites: true,
+        show30DaysSatellites: false,
+        showISS: false,
     },
     reducers: {
         setPlanetSelected: (state, action) => {
@@ -22,6 +26,15 @@ const planetSlice = createSlice({
         setShowPlayground: (state, action) => {
             state.showPlayground = action.payload;
         },
+        setShowAllSatellites: (state, action) => {
+            state.showAllSatellites = action.payload;
+        },
+        setShowISS: (state, action) => {
+            state.showISS = action.payload;
+        },
+        setShow30DaysSatellites: (state, action) => {
+            state.show30DaysSatellites = action.payload;
+        },
     },
 });
 
@@ -30,5 +43,8 @@ export const {
     setSelectedPlanetName,
     setSelectedPlanetIndex,
     setShowPlayground,
+    setShowAllSatellites,
+    setShowISS,
+    setShow30DaysSatellites,
 } = planetSlice.actions;
 export default planetSlice.reducer;

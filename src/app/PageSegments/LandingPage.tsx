@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import homebg from "../../../public/images/gradientBg.svg";
 import sunbg from "../../../public/images/sunbg.png";
 import avatar from "../../../public/images/AIavatar.svg";
@@ -13,15 +13,33 @@ import { RootState } from "../../../redux/store";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import EarthThreeD from "@/components/Earth";
+import instructionsImg from "../../../public/images/instructions.png";
 
 import loadingIcon from "../../../public/images/loadingIcon.svg";
 import { setSatelliteLoading } from "../../../redux/features/pagesSlice";
+import {
+    setShow30DaysSatellites,
+    setShowAllSatellites,
+    setShowISS,
+} from "../../../redux/features/planetSlice";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 const LandingPage = () => {
+    const [showInstructions, setShowInstructions] = useState(true);
+
     const showPlayground = useSelector((state: RootState) => state.planetSlice.showPlayground);
     const satelliteLoading = useSelector((state: RootState) => state.pagesSlice.satelliteLoading);
+    const showAllSatellites = useSelector(
+        (state: RootState) => state.planetSlice.showAllSatellites
+    );
+
+    const show30DaysSatellites = useSelector(
+        (state: RootState) => state.planetSlice.show30DaysSatellites
+    );
+
+    const showISS = useSelector((state: RootState) => state.planetSlice.showISS);
+
     const dispatch = useDispatch();
     return (
         <>
@@ -50,14 +68,66 @@ const LandingPage = () => {
                         <pointLight position={[10, 1, 10]} decay={0} intensity={1} />
 
                         <ambientLight intensity={3} />
-                        <EarthThreeD />
+
+                        {showAllSatellites && <EarthThreeD />}
+                        {show30DaysSatellites && <EarthThreeD />}
+                        {showISS && <EarthThreeD />}
                     </Canvas>
 
-                    <div className="sm:h-[80vh] sm:w-[20vw] h-[8rem] w-[96vw] bg-white/50 rounded-sm absolute right-[2vw] sm:top-[10vh]  top-[80vh] sm:right-[3rem] "></div>
+                    {/* Instructions for satellites */}
+                    {showInstructions && (
+                        <div
+                            className="w-full h-full fixed flex items-center justify-center top-0 left-0 bg-black/50 cursor-pointer z-50"
+                            onClick={() => setShowInstructions(false)}
+                        >
+                            <Image
+                                src={instructionsImg}
+                                alt=""
+                                className=" h-[30%] w-auto user-select-none"
+                                draggable={false}
+                            />
+                        </div>
+                    )}
+
+                    {/* Menu to change the satellites number */}
+                    <div className="md:h-auto md:w-[20vw] h-[9rem] w-[96vw] bg-white/50 rounded-md absolute right-[2vw] md:top-[60%]  top-[80vh] md:right-[3rem] p-4 md:space-y-4 space-y-2 items-center flex flex-col justify-center">
+                        <button
+                            className="px-4 py-2 bg-white rounded-full text-xs md:text-sm "
+                            onClick={() => {
+                                dispatch(setShowAllSatellites(true));
+                                dispatch(setShow30DaysSatellites(false));
+                                dispatch(setShowISS(false));
+                            }}
+                        >
+                            Show all active satellites
+                        </button>
+                        <button
+                            className="px-4 py-2 bg-white rounded-full text-xs md:text-sm"
+                            onClick={() => {
+                                dispatch(setShowAllSatellites(false));
+                                dispatch(setShow30DaysSatellites(true));
+                                dispatch(setShowISS(false));
+                            }}
+                        >
+                            Satellites launched in last 30 Days
+                        </button>
+                        <button
+                            className="px-4 py-2 bg-white rounded-full text-xs md:text-sm"
+                            onClick={() => {
+                                dispatch(setShowAllSatellites(false));
+                                dispatch(setShow30DaysSatellites(false));
+                                dispatch(setShowISS(true));
+                            }}
+                        >
+                            Show International space stations
+                        </button>
+                    </div>
                 </div>
             )}
+
+            {/* Loading icon */}
             {satelliteLoading && (
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center fixed z-40 top-[10vh] w-full">
                     <Image
                         src={loadingIcon}
                         alt=""

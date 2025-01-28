@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef, useState } from "react";
@@ -7,6 +8,8 @@ import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { animated, useSpring } from "@react-spring/three";
 import { getSpaceObjectPositionsForThreeFiber } from "@/app/frontendHalperFunctions/ISSPosCalculator";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 export type SatelliteData = {
     name: string;
@@ -72,11 +75,23 @@ export default function EarthThreeD(props) {
 
     useEffect(() => {
         if (earthRef.current) {
-            // getActive();
-            getRecentlyLaunched();
-            // getISS();
+            if (showAllSatellites) {
+                getActive();
+            } else if (show30DaysSatellites) {
+                getRecentlyLaunched();
+            } else if (showISS) {
+                getISS();
+            }
         }
     }, []);
+
+    const showAllSatellites = useSelector(
+        (state: RootState) => state.planetSlice.showAllSatellites
+    );
+    const show30DaysSatellites = useSelector(
+        (state: RootState) => state.planetSlice.show30DaysSatellites
+    );
+    const showISS = useSelector((state: RootState) => state.planetSlice.showISS);
 
     return (
         <>
